@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#0F172A">
+    <title>QAWĀM — Asisten Keputusan Finansial</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app">
+    <header class="topbar">
+        <div class="brand-row">
+            <div>
+                <div class="brand">QAWĀM</div>
+                <div class="brand-subtitle">Asisten Keputusan Finansial</div>
+            </div>
+            <button class="profile-button" onclick="showPage('profil')" aria-label="Profil">👤</button>
+        </div>
+    </header>
+
+    <main class="content">
+        <section id="home" class="page active">
+            <div class="hero">
+                <span class="hero-label">Berbasis nilai Al-Qur'an</span>
+                <h1>Kenali kondisimu.<br>Pertimbangkan keputusanmu.</h1>
+                <p>QAWĀM membantu kamu mempertimbangkan keputusan finansial berdasarkan kondisi, kebutuhan, tujuan, proporsionalitas, dan keberlanjutan.</p>
+                <button class="primary-button" onclick="showPage('keputusan')">+ Saya Mau Membeli Sesuatu</button>
+            </div>
+
+            <div class="section-title"><h2>Ringkasan Keuangan</h2><span>Data kamu</span></div>
+            <div class="balance-card">
+                <div class="balance-label">Saldo tersedia</div>
+                <div id="saldo" class="balance-value">Rp0</div>
+                <div class="balance-grid">
+                    <div class="balance-item"><small>Pemasukan</small><strong id="pemasukan">Rp0</strong></div>
+                    <div class="balance-item"><small>Pengeluaran</small><strong id="pengeluaran">Rp0</strong></div>
+                </div>
+            </div>
+
+            <div class="section-title"><h2>Fitur Utama</h2></div>
+            <div class="feature-grid">
+                <button class="feature-card" onclick="showPage('keuangan')"><div class="feature-icon">💰</div><h3>Keuangan</h3><p>Catat kondisi keuangan dan transaksi.</p></button>
+                <button class="feature-card" onclick="showPage('keputusan')"><div class="feature-icon">⚖️</div><h3>Keputusan Qawām</h3><p>Pertimbangkan sebelum melakukan pembelian.</p></button>
+                <button class="feature-card" onclick="showPage('riwayat')"><div class="feature-icon">📝</div><h3>Riwayat</h3><p>Lihat keputusan yang pernah dibuat.</p></button>
+                <button class="feature-card" onclick="showPage('profil')"><div class="feature-icon">⚙️</div><h3>Profil</h3><p>Kelola data dan pengaturan aplikasi.</p></button>
+            </div>
+
+            <div class="section-title"><h2>Landasan Qur'ani</h2></div>
+            <div class="quran-card">
+                <div class="quran-label">QS AL-FURQĀN [25]: 67</div>
+                <div class="arabic">وَكَانَ بَيْنَ ذَٰلِكَ قَوَامًا</div>
+                <div class="translation">"Dan adalah (pembelanjaan itu) di tengah-tengah antara yang demikian."</div>
+                <div class="reference">Prinsip Qawām: tidak berlebihan dan tidak kikir.</div>
+            </div>
+        </section>
+
+        <section id="keuangan" class="page">
+            <div class="section-title"><h2>Keuangan Saya</h2><span>Inventaris</span></div>
+            <div class="form-card">
+                <div class="form-group"><label>Saldo saat ini</label><input id="inputSaldo" type="number" inputmode="numeric" placeholder="Contoh: 500000"></div>
+                <div class="form-group"><label>Pemasukan bulanan</label><input id="inputPemasukan" type="number" inputmode="numeric" placeholder="Contoh: 1500000"></div>
+                <div class="form-group"><label>Pengeluaran bulanan</label><input id="inputPengeluaran" type="number" inputmode="numeric" placeholder="Contoh: 1000000"></div>
+                <button class="primary-button" onclick="simpanKeuangan()">Simpan Kondisi Keuangan</button>
+            </div>
+
+            <div class="section-title"><h2>Utang & Kewajiban</h2></div>
+            <div class="form-card">
+                <div class="form-group"><label>Total kewajiban</label><input id="inputUtang" type="number" inputmode="numeric" placeholder="Contoh: 300000"></div>
+                <button class="primary-button" onclick="simpanUtang()">Simpan Kewajiban</button>
+            </div>
+        </section>
+
+        <section id="keputusan" class="page">
+            <div class="section-title"><h2>Saya Mau Membeli...</h2><span>Qawām Check</span></div>
+            <div class="form-card">
+                <div class="form-group"><label>Nama barang / kebutuhan</label><input id="namaBarang" type="text" placeholder="Contoh: Sepatu"></div>
+                <div class="form-group"><label>Harga</label><input id="hargaBarang" type="number" inputmode="numeric" placeholder="Contoh: 250000"></div>
+                <div class="form-group">
+                    <label>Apakah ini kebutuhan?</label>
+                    <select id="kebutuhan">
+                        <option value="">Pilih jawaban</option>
+                        <option value="ya">Ya, kebutuhan</option>
+                        <option value="tidak">Tidak, keinginan</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Tujuan pembelian</label>
+                    <select id="tujuan">
+                        <option value="">Pilih tujuan</option>
+                        <option value="kebutuhan">Memenuhi kebutuhan</option>
+                        <option value="pendidikan">Pendidikan</option>
+                        <option value="pekerjaan">Pekerjaan</option>
+                        <option value="sosial">Sosial</option>
+                        <option value="hiburan">Hiburan</option>
+                        <option value="lainnya">Lainnya</option>
+                    </select>
+                </div>
+                <button class="primary-button" onclick="cekQawam()">Pertimbangkan dengan Qawām</button>
+            </div>
+            <div id="hasilKeputusan" class="hidden"></div>
+        </section>
+
+        <section id="riwayat" class="page">
+            <div class="section-title"><h2>Riwayat Keputusan</h2><span id="jumlahRiwayat">0 keputusan</span></div>
+            <div id="listRiwayat">
+                <div class="empty-state"><div class="empty-state-icon">📋</div>Belum ada keputusan yang tersimpan.</div>
+            </div>
+        </section>
+
+        <section id="profil" class="page">
+            <div class="section-title"><h2>Profil & Informasi</h2></div>
+            <div class="form-card">
+                <div class="section-title"><h2>Tentang QAWĀM</h2></div>
+                <p class="info-text">QAWĀM adalah rancangan aplikasi pendukung pengambilan keputusan finansial personal yang mengoperasionalkan prinsip Qawām dari QS al-Furqān [25]:67.</p>
+                <p class="info-text">Aplikasi ini tidak memberikan fatwa dan tidak mengambil keputusan atas nama pengguna. QAWĀM membantu pengguna mempertimbangkan keputusan berdasarkan informasi keuangannya.</p>
+                <button class="secondary-button" onclick="hapusData()">Hapus Data Lokal</button>
+            </div>
+
+            <div class="section-title"><h2>Prinsip Qawām</h2></div>
+            <div class="feature-grid">
+                <div class="feature-card"><div class="feature-icon">1</div><h3>Kondisi</h3><p>Mempertimbangkan kondisi finansial pengguna.</p></div>
+                <div class="feature-card"><div class="feature-icon">2</div><h3>Kebutuhan</h3><p>Memeriksa apakah pengeluaran benar-benar dibutuhkan.</p></div>
+                <div class="feature-card"><div class="feature-icon">3</div><h3>Tujuan</h3><p>Mempertimbangkan tujuan dan penggunaan pengeluaran.</p></div>
+                <div class="feature-card"><div class="feature-icon">4</div><h3>Proporsionalitas</h3><p>Mempertimbangkan kewajaran pengeluaran terhadap kondisi.</p></div>
+            </div>
+        </section>
+    </main>
+
+    <nav class="bottom-nav">
+        <button id="nav-home" class="nav-button active" onclick="showPage('home')"><span class="nav-icon">⌂</span>Beranda</button>
+        <button id="nav-keuangan" class="nav-button" onclick="showPage('keuangan')"><span class="nav-icon">💰</span>Keuangan</button>
+        <button id="nav-keputusan" class="nav-button" onclick="showPage('keputusan')"><span class="nav-icon">⚖️</span>Keputusan</button>
+        <button id="nav-riwayat" class="nav-button" onclick="showPage('riwayat')"><span class="nav-icon">📋</span>Riwayat</button>
+    </nav>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
